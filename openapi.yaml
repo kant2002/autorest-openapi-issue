@@ -1,0 +1,50 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: OpenAPI
+  license:
+    name: MIT
+servers:
+  - url: https://localhost/
+
+paths:
+  /patients:
+    post:
+      summary: Register new patient
+      operationId: createPatient
+      requestBody:
+        required: true
+        content:
+          'application/x-www-form-urlencoded':
+            schema:
+              type: object
+              required:
+                - isvalid2
+                - code
+              properties:
+                address1:
+                  description: "Patient's address - 1st line (Max length: 100)"
+                  type: string
+                address2:
+                  description: "Patient's address - 2nd line (Max length: 100)"
+                  type: string
+                city:
+                  description: "Patient's city (Max length: 30)"
+                  type: string
+                code:
+                  type: integer
+                  format: int32
+                departmentid:
+                  type: integer
+                  format: int32
+                isvalid:
+                  type: boolean
+                isvalid2:
+                  type: boolean
+      responses:
+        '200':
+          description: Array of information about created patients
+          content:
+            application/json:
+              schema:
+                type: string
